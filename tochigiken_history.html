@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>日本語学習－復習用に使ってください</title>
+<style>
+body{
+  font-family:"Segoe UI", "Hiragino Sans", sans-serif;
+  background:#000;
+  color:#fff;
+  max-width:900px;
+  margin:auto;
+  padding:12px;
+  line-height:1.6;
+}
+
+/* セットボックス */
+.set{
+  display:none;
+  background:#1a1a1a;
+  padding:14px;
+  border-radius:12px;
+  box-shadow:0 3px 8px rgba(0,0,0,0.4);
+  margin-bottom:22px;
+  opacity:0;
+  transform:translateY(20px);
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+.set.visible{
+  display:block;
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* 会話レイアウト */
+.dialogue{
+  display:flex;
+  align-items:flex-start;
+  margin-top:10px;
+  gap:10px;
+  word-break:break-word;
+}
+.left{justify-content:flex-start;}
+.right{justify-content:flex-end;text-align:right;flex-direction:row-reverse;}
+
+/* 吹き出し */
+.bubble{
+  max-width:80%;
+  padding:10px 14px;
+  border-radius:14px;
+  line-height:1.6;
+  box-shadow:inset 0 0 4px rgba(255,255,255,0.1);
+}
+.left .bubble{background:#222;border-top-left-radius:0;}
+.right .bubble{background:#333;border-top-right-radius:0;}
+
+/* テキストカラー */
+.jp{color:#fff;font-weight:bold;font-size:1.1em;}
+.roma{color:#ffcc33;font-weight:bold;font-size:1.05em;margin-top:4px;}
+.sub{color:#33e0ff;font-size:0.9em;margin-top:2px;}
+
+/* 音声プレイヤー */
+audio{
+  width:100%;
+  margin-top:6px;
+  filter:invert(100%) brightness(120%);
+}
+.speed-control{margin-top:4px;font-size:0.85em;color:#aaa;}
+
+/* アバター */
+img.avatar{
+  width:60px;
+  height:60px;
+  border-radius:50%;
+  object-fit:cover;
+  background:#fff;
+  box-shadow:0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* ヘッダー */
+h2{
+  text-align:center;
+  background:#0d47a1;
+  color:white;
+  padding:10px;
+  border-radius:8px;
+  font-size:1.25em;
+  margin-bottom:16px;
+}
+
+/* セット見出し */
+h3{
+  color:#64b5f6;
+  border-left:5px solid #42a5f5;
+  padding-left:10px;
+  margin-bottom:10px;
+}
+
+/* ナビゲーション */
+nav{
+  position:fixed;
+  bottom:0;
+  left:0;
+  width:100%;
+  background:#1565c0;
+  padding:10px;
+  text-align:center;
+  border-radius:10px 10px 0 0;
+  z-index:999;
+}
+button.nav-btn{
+  background:#0288d1;
+  color:white;
+  border:none;
+  border-radius:8px;
+  margin:0 6px;
+  padding:10px 18px;
+  font-size:1em;
+  cursor:pointer;
+  font-weight:bold;
+  box-shadow:0 2px 4px rgba(0,0,0,0.3);
+}
+button.nav-btn:hover{background:#039be5;}
+
+/* ===== スマホ対応調整 ===== */
+@media (max-width:600px){
+  body{
+    padding:8px;
+    font-size:0.95em;
+  }
+  .set{
+    padding:10px;
+  }
+  img.avatar{
+    width:48px;
+    height:48px;
+  }
+  .bubble{
+    max-width:88%;
+    font-size:0.95em;
+    padding:8px 12px;
+  }
+  h2{
+    font-size:1.1em;
+    padding:8px;
+  }
+  button.nav-btn{
+    font-size:0.9em;
+    padding:8px 12px;
+    margin:0 4px;
+  }
+}
+/* ✅ ここから追記部分 */
+.ja { font-size: 1.1em; color: #fff; font-weight: bold; }
+.roma, .en, .zh, .pt { font-size: 0.85em; color: #ccc; }
+.kanji { font-weight: bold; color: #ffeb3b; }
+/* ✅ 追記ここまで */
+</style>
+</head>
+<body>
+
+<h2>🏥 日本語会話自習用教材（中級者向け）<br>
+Japanese Conversation Self-Study Material <br>
+日语会话自学教材<br>
+Material de Autoestudo de Conversação em Japonês <br>
+
+</h2>
+
+<div id="conversation">
+  <!-- ✅ ここにあなたの全30セットの <div class="set"> ... </div> をそのまま貼り付け -->
+  <div class="set visible">
+<h3>今回の話題：栃木県の歴史と文化についてです</h3>
+<div class="dialogue left">
+<img src="images/patient.png" alt="受付スタッフ" class="avatar">
+<div class="bubble">
+<p class="jp">
+  <span class="ja">私はブラジルから来た留学生です。</span><br>
+  <span class="roma">Watashi wa Burajiru kara kita ryūgakusei desu.</span><br>
+  <span class="en">I am an exchange student from Brazil.</span><br>
+  <span class="zh">我是来自巴西的留学生。</span><br>
+  <span class="pt">Sou um estudante estrangeiro vindo do Brasil.</span>
+</p>
+<audio id="staff01" controls src="audio/speech_01.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+ <span class="ja">先週、日光東照宮に行きました。</span><br>
+ <span class="roma">Senshū, Nikkō Tōshōgū ni ikimashita.</span><br>
+ <span class="en">Last week, I visited Nikkō Tōshōgū Shrine.</span><br>
+ <span class="zh">上个星期我去了日光东照宫。</span><br>
+ <span class="pt">Na semana passada, visitei o Santuário Nikkō Tōshōgū.
+</p>
+<audio id="staff01" controls src="audio/speech_02.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">金色の建物や細かい彫刻を見て感動しました。</span><br>
+<span class="roma">Kiniro no tatemono ya komakai chōkoku o mite kandō shimashita.</span><br>
+<span class="en">I was deeply impressed by the golden buildings and detailed carvings.</span><br>
+<span class="zh">看到金色的建筑和精致的雕刻，我很感动。</span><br>
+<span class="pt">Fiquei muito impressionado com os edifícios dourados e as esculturas detalhadas.
+</p>
+<audio id="staff01" controls src="audio/speech_03.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">日本の文化は本当に美しく、心が動きました</span><br>
+<span class="roma">Nihon no bunka wa hontō ni utsukushiku, kokoro ga ugokimashita.</span><br>
+<span class="en">Japanese culture is truly beautiful, and it touched my heart.</span><br>
+<span class="zh">日本文化真的很美，让我很感动。</span><br>
+<span class="pt">A cultura japonesa é realmente bela e tocou meu coração.
+</p>
+<audio id="staff01" controls src="audio/speech_04.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">日光東照宮は徳川家康をまつる神社だと知りました。</span><br>
+<span class="roma">Nikkō Tōshōgū wa Tokugawa Ieyasu o matsuru jinja da to shirimashita.</span><br>
+<span class="en">I learned that Nikkō Tōshōgū enshrines Tokugawa Ieyasu.</span><br>
+<span class="zh">我了解到日光东照宫是供奉德川家康的神社。</span><br>
+<span class="pt">Soube que o Santuário Nikkō Tōshōgū homenageia Tokugawa Ieyasu.
+</p>
+<audio id="staff01" controls src="audio/speech_05.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">江戸時代の繁栄を感じました。</span><br>
+<span class="roma">Edo jidai no han’ei o kanjimashita.</span><br>
+<span class="en">I felt the prosperity of the Edo period.</span><br>
+<span class="zh">我感受到了江户时代的繁荣。</span><br>
+<span class="pt">Senti a prosperidade do período Edo.
+</p>
+<audio id="staff01" controls src="audio/speech_06.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">日本人は昔から温故知新を大切にしていると聞きました。</span><br>
+<span class="roma">Nihonjin wa mukashi kara onkochishin o taisetsu ni shite iru to kikimashita.</span><br>
+<span class="en">I heard that Japanese people value “Onkochishin,” learning from the past to create new things.</span><br>
+<span class="zh">我听说日本人一直重视“温故知新”的精神。</span><br>
+<span class="pt">Ouvi dizer que os japoneses valorizam o princípio de “Onkochishin” — aprender com o passado para criar o novo.
+</p>
+<audio id="staff01" controls src="audio/speech_07.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">古いことを学び、新しい知識を生み出すという考え方はすばらしいです。</span><br>
+<span class="roma">Furui koto o manabi, atarashii chishiki o umidasu to iu kangaekata wa subarashii desu..</span><br>
+<span class="en">The idea of learning from the past and generating new knowledge is wonderful.</span><br>
+<span class="zh">从旧事中学习并创造新知识的想法非常棒。</span><br>
+<span class="pt">A ideia de aprender com o passado e criar novo conhecimento é maravilhosa.
+</p>
+<audio id="staff01" controls src="audio/speech_08.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">私は勤勉努力という日本人の精神にも共感します。</span><br>
+<span class="roma">Watashi wa kinben doryoku to iu Nihonjin no seishin ni mo kyōkan shimasu.</span><br>
+<span class="en">I also admire the Japanese spirit of diligence and effort.</span><br>
+<span class="zh">我也很赞赏日本人勤奋努力的精神。</span><br>
+<span class="pt">A ideia de aprender com o passado e criar novo conhecimento é maravilhosa.
+</p>
+<audio id="staff01" controls src="audio/speech_09.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">栃木県の人々も昔から一所懸命に働いてきたそうです。</span><br>
+<span class="roma">Tochigi-ken no hitobito mo mukashi kara isshokenmei ni hataraite kita sō desu.</span><br>
+<span class="en">I heard that people in Tochigi have always worked very hard.</span><br>
+<span class="zh">听说栃木县的人自古以来都非常努力工作。</span><br>
+<span class="pt">Ouvi dizer que as pessoas de Tochigi sempre trabalharam com muito empenho.
+</p>
+<audio id="staff01" controls src="audio/speech_10.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">益子焼や足利学校の話も聞きました。</span><br>
+<span class="roma">Mashiko-yaki ya Ashikaga gakkō no hanashi mo kikimashita.</span><br>
+<span class="en">I also learned about Mashiko pottery and Ashikaga School.</span><br>
+<span class="zh">我也听说了益子烧和足利学校的事情。</span><br>
+<span class="pt">Também aprendi sobre a cerâmica Mashiko e a Escola Ashikaga.
+</p>
+<audio id="staff01" controls src="audio/speech_11.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">足利学校は日本で最も古い学校と言われていて、とても興味があります。</span><br>
+<span class="roma">Ashikaga gakkō wa Nihon de mottomo furui gakkō to iwarete ite, totemo kyōmi ga arimasu.</span><br>
+<span class="en">Ashikaga School is said to be the oldest school in Japan, which interests me a lot.</span><br>
+<span class="zh">据说足利学校是日本最古老的学校，我非常感兴趣。</span><br>
+<span class="pt">Dizem que a Escola Ashikaga é a mais antiga do Japão, e isso me interessa muito.
+</p>
+<audio id="staff01" controls src="audio/speech_12.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+<p class="jp">
+<span class="ja">日本の歴史は波乱万丈です。</span><br>
+<span class="roma">Nihon no rekishi wa haran banjō desu.</span><br>
+<span class="en">Japanese history is full of ups and downs.</span><br>
+<span class="zh">日本的历史充满了起伏与变化。</span><br>
+<span class="pt">A história do Japão é cheia de altos e baixos.
+</p>
+<audio id="staff01" controls src="audio/speech_13.mp3"></audio>
+<div class="speed-control">再生速度: <input type="range" id="staff01_speed" min="0.5" max="1.5" step="0.1" value="1" oninput="setSpeed('staff01')"></div>
+
+
+</div>
+</div>
+</div>
+</div>
+
+
+<script>
+let index=0;
+const sets=document.querySelectorAll('.set');
+function showSet(i){
+  sets.forEach(s=>s.classList.remove('visible'));
+  if(i>=0 && i<sets.length){
+    sets[i].classList.add('visible');
+    sets[i].scrollIntoView({behavior:'smooth', block:'center'});
+  }
+}
+function nextSet(){if(index<sets.length-1){index++;showSet(index);}}
+function prevSet(){if(index>0){index--;showSet(index);}}
+showSet(index);
+
+function setSpeed(id){
+  const a=document.getElementById(id);
+  const r=document.getElementById(id+'_speed').value;
+  a.playbackRate=r;
+}
+</script>
+</body>
+</html>
